@@ -12,11 +12,11 @@
 		<div class="modal-content" id="my">
 			<div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="staffModalLabel">修改员工</h4>
+		        <h4 class="modal-title" id="staffModalLabel">添加员工</h4>
 		    </div>
 		    
    			<div class="modal-body">
-   				<form role="form" id="staffCreateForm" class="form-horizontal">
+   				<form role="form" id="staffCreateForm" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">姓&nbsp;&nbsp;&nbsp;名</label>
                         <div class="col-sm-10">
@@ -45,7 +45,15 @@
                         <input class="form-control" placeholder="请输入手机号" name="mobile">
                         </div>
                     </div>
-                    <input type="hidden" name="positionIds" id="staffFormPositionIds">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">头&nbsp;&nbsp;&nbsp;像</label>
+                      
+                        <label class="col-sm-10 control-label" >
+                        <input type="file" name="headImageD"  />
+                        </label>
+                       
+                    </div>
+                   
 				<div class="form-group ">
 				 <label class="col-sm-2 control-label">职&nbsp;&nbsp;&nbsp;位</label>
 				  	 <div class=" col-sm-10 ">
@@ -59,6 +67,7 @@
 				</div>
 				</div>
 				</div>
+				 <input type="hidden" name="positionIds" id="staffFormPositionIds">
 			</form>
    			</div>
    			
@@ -134,14 +143,33 @@
 		        if (!bv.isValid()) {
 		        	return;
 		        }
-		        $.post ('${pageContext.request.contextPath}/staff/create', $('#staffCreateForm').serializeArray(), function (result) {
+		        /* $.post ('${pageContext.request.contextPath}/staff/create', $('#staffCreateForm').serializeArray(), function (result) {
 		 			if (result.success) {
 		 				$('#page-wrapper').load ('${pageContext.request.contextPath}/staff');
 		 				$('#staffDialog').modal ('hide');
 		 			} else {
 		 				alert (result.message);
 		 			}
-		 		});
+		 		}); */
+		        $.ajax({
+					url : '${pageContext.request.contextPath}/staff/create',
+					method : 'POST',
+					data : new FormData(document.getElementById('staffCreateForm')),
+					contentType : false, // 注意这里应设为false
+					processData : false,
+					cache : false,
+					success : function(json) {
+						alert (json.message);
+						if(json.success){
+							$('#page-wrapper').load ('${pageContext.request.contextPath}/staff');
+			 				$('#staffDialog').modal ('hide');
+						}
+						
+					},
+					error : function(jqXHR) {
+						alert ('失败！');
+					}
+				});
 		 	}
 	</script>
 	<!-- /.col-lg-12 -->

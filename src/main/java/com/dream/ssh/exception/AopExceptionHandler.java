@@ -7,6 +7,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import com.dream.ssh.vo.DataTable;
@@ -66,9 +67,12 @@ public class AopExceptionHandler implements MethodInterceptor {
 				dt.setDraw(++draw);
 				return dt;
 			}
-			// 4.ajax请求返回Result
+			// 4.ajax请求返回Result//
 			if(e instanceof ConstraintViolationException){
 				return new MyResult().setSuccess(false).setMessage("此用户已经存在，更换登录名或手机号");
+			}
+			if(e instanceof DataIntegrityViolationException){
+				return new MyResult().setSuccess(false).setMessage("此记录存在关联，不能删除");
 			}
 			return new MyResult().setSuccess(false).setMessage(e.getMessage());
 		}

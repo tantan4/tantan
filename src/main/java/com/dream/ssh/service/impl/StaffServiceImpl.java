@@ -1,5 +1,7 @@
 package com.dream.ssh.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dream.ssh.dao.DictionaryDao;
 import com.dream.ssh.dao.StaffDao;
@@ -75,11 +78,12 @@ public class StaffServiceImpl implements com.dream.ssh.service.StaffService {
 			}
 			po.setPositions(list);
 		}
+		
 		staffDao.update(po);
 	}
 
 	@Override
-	public void create(StaffDto s) {
+	public void create(StaffDto s,MultipartFile headImage) {
 		Staff po = new Staff();
 		po.setBirthday(s.getBirthday());
 		po.setGender(s.getGender());
@@ -90,6 +94,18 @@ public class StaffServiceImpl implements com.dream.ssh.service.StaffService {
 		user.setLoginName(s.getMobile());
 		user.setName(s.getName());
 		user.setPassword("123456");
+		
+		String fileName = headImage.getOriginalFilename();
+		String dirPath = "d:/java/upload";
+		File dir = new File (dirPath);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		try {
+			headImage.transferTo(new File (dirPath + "/" + fileName));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
 		List<Position> list = new ArrayList<Position>();
 		if(s.getPositionIds()!=""){
 			String[] ids = s.getPositionIds().split(",");
@@ -120,6 +136,12 @@ public class StaffServiceImpl implements com.dream.ssh.service.StaffService {
 		 }
 		 staffDao.delete(po);
 		}
+	}
+
+	@Override
+	public void create(StaffDto u) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

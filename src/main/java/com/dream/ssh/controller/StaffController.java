@@ -1,4 +1,6 @@
 package com.dream.ssh.controller;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dream.ssh.dto.DictionaryDto;
 import com.dream.ssh.dto.PositionDto;
@@ -72,8 +75,10 @@ public class StaffController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public MyResult create(StaffDto u) {
-		staffService.create(u);
+	public MyResult create(@RequestParam(value = "headImageD", required = false)MultipartFile headImageD,StaffDto u) {
+		staffService.create(u,headImageD);
+		
+		
 		return new MyResult().setSuccess(true).setMessage("添加成功");
 	}
 

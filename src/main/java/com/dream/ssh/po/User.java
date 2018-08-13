@@ -1,5 +1,7 @@
 package com.dream.ssh.po;
+import java.security.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,6 +30,8 @@ public class User {
 	private String loginName;
 	@Column(length=32)
 	private String password;
+	@Column(columnDefinition="timestamp")
+	private Date createTime;
 	@ManyToMany
 	@JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), 
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -71,6 +75,13 @@ public class User {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 	
 	
 	

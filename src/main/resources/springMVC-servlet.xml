@@ -41,4 +41,14 @@
 	<aop:config>
 		<aop:advisor advice-ref="aopExceptionHandler" pointcut="execution(* com.dream.ssh.controller..*.*(..))"/>
 	</aop:config>
+	<!-- 5.配置文件上传，如果没有使用文件上传可以不用配置 -->
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 默认编码 -->
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 文件大小最大值 -->
+		<property name="maxUploadSize" value="10485760000" />
+		<!-- 内存中的最大值 -->
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
 </beans>

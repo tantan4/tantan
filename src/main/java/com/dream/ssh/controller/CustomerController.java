@@ -1,6 +1,4 @@
 package com.dream.ssh.controller;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dream.ssh.dto.CustomerDto;
-import com.dream.ssh.dto.UserDto;
 import com.dream.ssh.service.CustomerService;
 import com.dream.ssh.vo.DataTable;
 import com.dream.ssh.vo.MyResult;

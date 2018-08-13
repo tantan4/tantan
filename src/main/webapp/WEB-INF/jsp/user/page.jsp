@@ -80,7 +80,7 @@
 		    			 var table = $('#' + tableId).DataTable();
 		    			table.rows('.info').remove().draw(false);
 		    		} else {
-		    			alert ('删除用户失败！');
+		    			alert (result.message);
 		    		}
 		    	});
             }

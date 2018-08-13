@@ -1,5 +1,7 @@
 package com.dream.ssh.service;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.dream.ssh.dto.StaffDto;
 import com.dream.ssh.dto.UserDto;
 import com.dream.ssh.vo.DataTable;
@@ -15,5 +17,7 @@ public interface StaffService {
 	void create(StaffDto u);
 
 	void delete(Integer[] id, UserDto u);
+
+	void create(StaffDto u, MultipartFile headImage);
 
 }
