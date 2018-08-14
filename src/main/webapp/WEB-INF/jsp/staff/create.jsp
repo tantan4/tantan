@@ -54,6 +54,8 @@
                        
                     </div>
                    
+                   
+                   
 				<div class="form-group ">
 				 <label class="col-sm-2 control-label">职&nbsp;&nbsp;&nbsp;位</label>
 				  	 <div class=" col-sm-10 ">
@@ -75,7 +77,9 @@
    				<button type="button" onclick="submitStaffCreateForm ();" class="btn btn-default">提交</button>
                 <button type="reset" class="btn btn-default">重置</button>
    			</div>
+			</script>
    		</div>
+   	
 	<script type="text/javascript">
 	function selectStaffPositions () {
 		$('#my').hide();
@@ -171,6 +175,7 @@
 					}
 				});
 		 	}
+		   
 	</script>
 	<!-- /.col-lg-12 -->
 </div>

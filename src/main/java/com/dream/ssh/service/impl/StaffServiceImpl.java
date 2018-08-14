@@ -83,7 +83,7 @@ public class StaffServiceImpl implements com.dream.ssh.service.StaffService {
 	}
 
 	@Override
-	public void create(StaffDto s,MultipartFile headImage) {
+	public void create(StaffDto s,MultipartFile headImageD) {
 		Staff po = new Staff();
 		po.setBirthday(s.getBirthday());
 		po.setGender(s.getGender());
@@ -95,17 +95,18 @@ public class StaffServiceImpl implements com.dream.ssh.service.StaffService {
 		user.setName(s.getName());
 		user.setPassword("123456");
 		
-		String fileName = headImage.getOriginalFilename();
-		String dirPath = "d:/java/upload";
+		String fileName = headImageD.getOriginalFilename();
+		String dirPath = "c:/java/upload";
 		File dir = new File (dirPath);
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
 		try {
-			headImage.transferTo(new File (dirPath + "/" + fileName));
+			headImageD.transferTo(new File (dirPath + "/" + fileName));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
+		po.setHeadImage(dirPath + "/" + fileName);
 		List<Position> list = new ArrayList<Position>();
 		if(s.getPositionIds()!=""){
 			String[] ids = s.getPositionIds().split(",");

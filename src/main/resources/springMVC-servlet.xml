@@ -27,7 +27,7 @@
 
 	<!-- 3.不拦截静态资源 -->
 	<mvc:resources mapping="/sb-admin2/**" location="/sb-admin2/"></mvc:resources>
-
+	<mvc:resources mapping="/laydate/**" location="/laydate/"></mvc:resources>
 	<!-- 4.视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 			<div class="row">
+			 
                 <div class="col-lg-12">
                     <h4>人员管理</h4>
                 </div>
@@ -30,6 +31,7 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
+           
                     <!-- /.panel -->
                 </div>
                 <script>
@@ -133,4 +135,4 @@
 		    </script>
                 <!-- /.col-lg-12 -->
             </div>
-            
+    

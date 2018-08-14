@@ -41,7 +41,7 @@
 <link
 	href="${pageContext.request.contextPath}/sb-admin2/dist/css/sb-admin-2.min.css"
 	rel="stylesheet">
-
+ 
 <!-- Custom Fonts -->
 <link
 	href="${pageContext.request.contextPath}/sb-admin2/vendor/font-awesome/css/font-awesome.min.css"
@@ -54,6 +54,7 @@
 <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                
     <![endif]-->
 <style type="text/css">
 </style>
@@ -177,6 +178,7 @@
 		<!-- /.navbar-static-side --> </nav>
 
 		<div id="page-wrapper"></div>
+		
 		<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
